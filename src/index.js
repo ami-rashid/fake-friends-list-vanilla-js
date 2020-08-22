@@ -1,6 +1,25 @@
+
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 const axios = require('axios');
 
-const render = (friends)=> {
+class Main extends Component {
+  constructor(){
+    super()
+    this.state = {};
+  }
+
+  render() {
+    return (console.log('hello'))
+  }
+}
+
+ReactDOM.render(
+  <Main />,
+  document.getElementById('app')
+);
+
+/*const render = (friends)=> {
   const ul = document.querySelector('ul');
   const error = document.querySelector('#error');
   error.innerText = '';
@@ -58,3 +77,4 @@ const init = async()=> {
 };
 
 init();
+*/
