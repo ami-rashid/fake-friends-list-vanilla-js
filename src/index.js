@@ -3,14 +3,41 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 const axios = require('axios');
 
+const friends = async function() {
+  const data = await axios.get('/api/friends')
+  console.log(data.data);
+}
+
+friends();
+
+
 class Main extends Component {
   constructor(){
     super()
-    this.state = {};
+    this.getFriends = this.getFriends.bind(this)
+    this.state = {
+      friends: []
+    };
+  }
+  
+  async getFriends () {
+    const data = await axios.get('/api/friends')
+    this.setState({friends: data.data})
+  }
+
+  componentDidMount() {
+    this.getFriends()
   }
 
   render() {
-    return (console.log('hello'))
+    return <div>{this.state.friends.map(friend => 
+    <div key={friend.id}>
+      <h1>{friend.name}</h1>
+      <button type="submit" onClick={()=>alert('clicked!')}>+</button>
+      <button type="submit">-</button>
+      <button type="submit">x</button>
+      </div>)}
+    </div>
   }
 }
 
